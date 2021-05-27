@@ -1,6 +1,8 @@
 package com.jojothespecialone.fleetapp.controllers;
 
+import com.jojothespecialone.fleetapp.models.Country;
 import com.jojothespecialone.fleetapp.models.State;
+import com.jojothespecialone.fleetapp.services.CountryService;
 import com.jojothespecialone.fleetapp.services.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +17,16 @@ public class StateController {
 
     @Autowired
     private StateService stateService;
+    @Autowired
+    private CountryService countryService;
 
     @GetMapping("/states")
     public String getStates(Model model){
         List<State> stateList = stateService.getStates();
         model.addAttribute("states", stateList);
+
+        List<Country> countryList = countryService.getCountries();
+        model.addAttribute("countries", countryList);
         return "state";
     }
 

@@ -1,5 +1,5 @@
 $('document').ready(function () {
-    $('table .btn-primary').on('click', function (event) {
+    $('.table #editButton').on('click', function (event) {
         event.preventDefault();
        // /countries/findById/?id = 1
         var href = $(this).attr('href');
@@ -14,20 +14,20 @@ $('document').ready(function () {
         $('#editModal').modal();
     });
 
-    $('table #detailsButton').on('click', function (event) {
+    $('.table #detailsButton').on('click', function (event) {
         event.preventDefault();
         var href = $(this).attr('href');
         $.get(href, function (state, status) {
-            $('#idDetails').valid(state.id);
-            $('#ddlCountryDetails').valid(state.countryid);
-            $('#nameDetails').valid(state.name);
-            $('#detailsDetails').valid(state.details);
-            $('#lastModifiedByDetails').valid(state.lastModifiedBy);
-            $('#lastModifiedDateDetails').valid(state.lastModifiedDate.substr(0,19).replace("T", ""));
+            $('#idDetails').val(state.id);
+            $('#ddlCountryDetails').val(state.countryid);
+            $('#nameDetails').val(state.name);
+            $('#detailsDetails').val(state.details);
+            $('#lastModifiedByDetails').val(state.lastModifiedBy);
+            //$('#lastModifiedDateDetails').val(state.lastModifiedDate.substr(0,19).replace("T", ""));
         });
         $('#detailsModal').modal();
     });
-    $('.table #detailsButton').on('click', function (event) {
+    $('.table #deleteButton').on('click', function (event) {
         event.preventDefault();
         var href = $(this).attr('href');
         $('#deleteModal #delRef').attr('href', href);

@@ -1,6 +1,8 @@
 package com.jojothespecialone.fleetapp.controllers;
 
 import com.jojothespecialone.fleetapp.models.Client;
+import com.jojothespecialone.fleetapp.models.Country;
+import com.jojothespecialone.fleetapp.models.State;
 import com.jojothespecialone.fleetapp.services.ClientService;
 import com.jojothespecialone.fleetapp.services.CountryService;
 import com.jojothespecialone.fleetapp.services.StateService;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -20,10 +23,14 @@ public class ClientController {
 
     //Get All clients
     @GetMapping("/clients")
-    public String findAll(Model model){
-        //model.addAttribute("countries", countryService.findAll());
-        //model.addAttribute("states", stateService.findAll());
-        model.addAttribute("clients", clientService.findAll());
+    public String getClients(Model model){
+        List<Client> clientList = clientService.getClients();
+        List<Country> countryList = countryService.getCountries();
+        List<State> stateList = stateService.getStates();
+
+        model.addAttribute("clients", clientList);
+        model.addAttribute("countries", countryList);
+        model.addAttribute("states", stateList);
         return "client";
     }
 
@@ -46,9 +53,9 @@ public class ClientController {
         return "redirect:/clients";
     }
 
-//    @RequestMapping(value = "clients/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
-//    public String delete(Integer id){
-//        clientService.delete(client);
-//        return "redirect:/clients";
-//    }
+    @RequestMapping(value = "clients/delete", method = {RequestMethod.DELETE, RequestMethod.GET})
+    public String delete(Integer id){
+        clientService.delete(id);
+        return "redirect:/clients";
+    }
 }
