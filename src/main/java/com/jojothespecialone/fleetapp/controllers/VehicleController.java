@@ -42,13 +42,6 @@ public class VehicleController {
         model.addAttribute("vehicleType", vehicleTypeList);
         model.addAttribute("employees", employeeList);
 
-//        model.addAttribute("vehicleMake", vehicleMakeService.getVehicleMake());
-//        model.addAttribute("vehicles", vehicleService.getVehicles());
-//        model.addAttribute("locations", locationService.getLocations());
-//        model.addAttribute("vehicleModel", vehicleModelService.getVehicleModel());
-//        model.addAttribute("vehicleStatus", vehicleStatusService.getVehicleStatus());
-//        model.addAttribute("vehicleType", vehicleTypeService.getVehiclesType());
-//        model.addAttribute("employees", employeeService);
         return "vehicle";
     }
 
