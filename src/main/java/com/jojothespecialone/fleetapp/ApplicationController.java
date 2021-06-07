@@ -21,5 +21,10 @@ public class ApplicationController {
         return "login";
     }
 
+    @GetMapping("/registers")
+    public String register(){
+        return "register";
+    }
+
 
 }
